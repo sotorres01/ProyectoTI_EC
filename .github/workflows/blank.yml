@@ -2,9 +2,9 @@ name: Front-end
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "backend" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "backend" ]
 
 jobs:
  build:
