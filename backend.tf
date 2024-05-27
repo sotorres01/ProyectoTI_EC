@@ -14,13 +14,6 @@ terraform {
 
 provider "azurerm" {
   skip_provider_registration = "true"
-  features {
-  
-  tenant_id       = ""
-  subscription_id = ""
-  client_secret	  = ""
-  client_id		    = ""
- }
 }
 
 resource "azurerm_resource_group" "rg" {
