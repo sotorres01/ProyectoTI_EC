@@ -1,0 +1,23 @@
+---
+- name: Configuración de máquina virtual en Azure y despliegue de imagen Docker
+  hosts: all
+  tasks:
+    - name: Instalar Docker en la máquina virtual
+      become: true
+      apt: name={{ item }} state=present update_cache=yes
+      loop: ["docker.io", "python3-pip"]
+
+    - name: Descargar python libreria docker 
+      become: true
+      pip: 
+        name: docker
+
+    - name: Descargar imagen Docker desde Docker Hub usando shell
+      become: true
+      shell: docker pull sofiat2024/backend-def
+
+    - name: Ejecutar contenedor Docker
+      become: true
+      shell: docker run -d -p 80:80 -e POSTGRES_HOST="dpg-cp56ct8cmk4c73ethb10-a.oregon-postgres.render.com" -e POSTGRES_PORT="5432" -e POSTGRES_DB="ecommerce_34gi_ijxt" -e POSTGRES_USER="ecommerce_34gi_user" -e POSTGRES_PASSWORD="JJ8L8yEBbH5Cu4BixOJHkgwRN4kZ4jro" sofiat2024/backend-def
+        
+
